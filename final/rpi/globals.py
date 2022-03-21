@@ -1,0 +1,2 @@
+BAUD_RATE = 9600
+TEENSY_COM = "/dev/ttyACM1"
