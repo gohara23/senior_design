@@ -14,4 +14,7 @@ class Motor {
     uint16_t step_pin;
 };
 
+void com_send();
+
+
 #endif

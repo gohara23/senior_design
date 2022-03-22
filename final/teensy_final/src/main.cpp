@@ -2,6 +2,8 @@
 
 ComHandler handler = ComHandler(BAUD_RATE);
 
-void setup() {}
+void setup() {
+    handler.add_operation("motor", com_send);
+}
 
 void loop() { handler.check_command(); }

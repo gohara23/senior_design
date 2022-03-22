@@ -5,3 +5,8 @@ Motor::Motor(uint16_t axis, uint16_t direction_pin, uint16_t stepper_pin) {
     dir_pin = direction_pin;
     step_pin = stepper_pin;
 }
+
+
+void com_send(){
+    Serial.println("{\"motor\": 1}");
+}
