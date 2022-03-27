@@ -1,3 +1,4 @@
+from pickletools import read_uint2
 import numpy as np
 import cv2 as cv
 import time
@@ -5,6 +6,10 @@ import time
 cap = cv.VideoCapture(0)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 160)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 120)
+
+cap2 = cv.VideoCapture(1)
+cap2.set(cv.CAP_PROP_FRAME_WIDTH, 160)
+cap2.set(cv.CAP_PROP_FRAME_HEIGHT, 120)
 
 frame_rate = 10
 prev = 0
@@ -23,7 +28,12 @@ while True:
         if not ret:
             print("Can't receive frame (stream end?). Exiting ...")
             break
+        ret2, frame2 = cap2.read()
+        if not ret2:
+            print("No cam 2...exiting")
+            break 
         cv.imshow('frame', frame)
+        cv.imshow('frame2', frame2)
         prev = time.time()
 
     if cv.waitKey(1) == ord('q'):
