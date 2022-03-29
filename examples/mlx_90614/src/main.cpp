@@ -28,15 +28,19 @@ void setup() {
 }
 
 void loop() {
-    Serial.print("Ambient: ");
-    Serial.print(mlx.readAmbientTempF());
-    Serial.println("F");
+    // Serial.print("Ambient: ");
+    // Serial.print(mlx.readAmbientTempF());
+    // Serial.println("F");
 
-    Serial.print("Target: ");
+    Serial.print("I2C ADDRESS Ox5B: ");
     Serial.print(mlx.readObjectTempF());
     Serial.println(" F");
 
-    Serial.println(mlx2.readObjectTempF());
+    delay(200);
+
+    Serial.print("I2C ADDRESS Ox5A: ");
+    Serial.print(mlx2.readObjectTempF());
+    Serial.println(" F");
 
     Serial.println();
     delay(1000);
