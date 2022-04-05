@@ -1,10 +1,10 @@
-from smbus2 import SMbus
+from smbus2 import SMBus
 import time
 
 if __name__ == "__main__":
 
     ADDRESS = 0x8
-    bus = SMbus(1)
+    bus = SMBus(1)
 
     while True:
 
