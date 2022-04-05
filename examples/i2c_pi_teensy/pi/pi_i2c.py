@@ -1,16 +1,5 @@
-from smbus import SMbus
-import RPi.GPIO as GPIO
+from smbus2 import SMbus
 import time
-
-def readNumberFromArduino():
-    
-    data_received_from_Arduino = i2c.read_i2c_block_data(slaveAddress, 0,15)
-    for i in range(len(data_received_from_Arduino)):
-        smsNumber += chr(data_received_from_Arduino[i])
-
-    print(smsNumber.encode('utf-8'))
-    data_received_from_Arduino = ""
-    smsNumber = ""
 
 if __name__ == "__main__":
 
