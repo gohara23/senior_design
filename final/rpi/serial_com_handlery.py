@@ -22,12 +22,21 @@ class ComHandler:
 
 if __name__ == "__main__":
 
-    COM_PORT = "COM13"
-    handler = ComHandler(COM_PORT)
-    cmd = "motor"
-    while True:
-        line = handler.get_data(f"{cmd}\n")
-        print(line)
-        dictionary = json.loads(line)
-        print(dictionary["motor"])
-        # time.sleep(0.1)
+    COM_PORT = "COM15"
+    COM_PORT = "ttyS0"
+    # handler = ComHandler(COM_PORT)
+    # cmd = "temps"
+    # while True:
+    #     line = handler.get_data(f"{cmd}\n")
+    #     print(line)
+    #     # dictionary = json.loads(line)
+    #     # print(dictionary["motor"])
+    #     time.sleep(0.1)
+
+    ser = serial.Serial(COM_PORT, BAUD_RATE)
+    while True: 
+        while not ser.in_waiting:
+            time.sleep(0.001)
+            line = ser.readline().decode("utf-8").rstrip()
+            print(line)
+        
