@@ -60,7 +60,7 @@ class ImageSensing:
 
         ix = 1
 
-        resized_vials = [cv.resize(vial, (100, 240), interpolation=cv.INTER_AREA) for vial in vials]
+        resized_vials = [cv.resize(vial, (50, 120), interpolation=cv.INTER_AREA) for vial in vials]
         
         return vials
             
