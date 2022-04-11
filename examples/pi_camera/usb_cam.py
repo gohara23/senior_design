@@ -32,13 +32,13 @@ def list_ports():
 
 if __name__ == "__main__":
 
-    ports, working = list_ports()
+    # ports, working = list_ports()
 
-    print(ports)
-    print(working)
+    # print(ports)
+    # print(working)
 
-    cap = cv.VideoCapture(1)
-# cap2 = cv.VideoCapture(1)
+    cap = cv.VideoCapture(2)
+    cap2 = cv.VideoCapture(0)
 
     if not cap.isOpened():
         print("Cannot open camera")
@@ -46,21 +46,21 @@ if __name__ == "__main__":
 while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
-    # ret2, frame2 = cap2.read()
+    ret2, frame2 = cap2.read()
 
     # if frame is read correctly ret is True
     if not ret:
         print("Cam 1 err")
         break
 
-    # if not ret2:
-    #     print("Cam 2 err")
-    #     break
+    if not ret2:
+        print("Cam 2 err")
+        break
     # Our operations on the frame come here
     # gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     # Display the resulting frame
     cv.imshow('frame', frame)
-    # cv.imshow('frame', frame2)
+    cv.imshow('frame', frame2)
 
     if cv.waitKey(1) == ord('q'):
         break
