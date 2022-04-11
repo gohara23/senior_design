@@ -79,6 +79,7 @@ if __name__ == "__main__":
 
         if cv.waitKey(1) == ord('q'):
             break
+        sleep(0.2)
     
     cv.destroyAllWindows()
         
