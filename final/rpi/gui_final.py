@@ -54,8 +54,9 @@ class ImageSensingThread(QThread):
     change_pixmap_four = pyqtSignal(QImage)
     change_pixmap_five = pyqtSignal(QImage)
     
-#     _, ports, _ = list_ports()
-    ports = [0, 2]
+    _, ports, _ = list_ports()
+    print(ports)
+#     ports = [0, 2]
 
     def run(self):
         while True:
