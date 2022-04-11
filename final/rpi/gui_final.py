@@ -98,6 +98,7 @@ class Ui_MainWindow(object):
     def setImage(self, image):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(image)
+        print(type(image))
         self.vial_cam_1.setScene(scene)
         # self.vial_cam_1.show()
 
