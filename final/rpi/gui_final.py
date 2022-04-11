@@ -53,7 +53,7 @@ class ImageSensingThread(QThread):
     def __init__(self):
         _, self.ports, _ = list_ports()
 
-    def get_vials(self):
+    def run(self):
         cam_one = cv.VideoCapture(self.ports[0])
         ret_one, frame_one = cam_one.read()
 
