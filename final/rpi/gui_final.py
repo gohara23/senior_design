@@ -93,7 +93,7 @@ class ImageSensingThread(QThread):
 
 
 class Ui_MainWindow(object):
-#     @pyqtSlot(QImage)
+    @pyqtSlot(QImage)
     def setImage(self, image):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(image)
