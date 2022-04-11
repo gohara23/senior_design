@@ -52,11 +52,11 @@ if __name__ == "__main__":
 
         sleep(0.1)
 
-        # ret_two, frame_two = cam_two.read()
-        # if not ret_two:
-        #     print("cam two error")
-        #     break
-        # cv.imshow("CAM_TWO", frame_two)
+        ret_two, frame_two = cam_two.read()
+        if not ret_two:
+            print("cam two error")
+            break
+        cv.imshow("CAM_TWO", frame_two)
         
 
         if cv.waitKey(1) == ord('q'):
