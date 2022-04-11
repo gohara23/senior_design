@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print(ports)
     print(working)
 
-    cap = cv.VideoCapture(0)
+    cap = cv.VideoCapture(1)
 # cap2 = cv.VideoCapture(1)
 
     if not cap.isOpened():
