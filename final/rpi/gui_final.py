@@ -49,7 +49,8 @@ def list_ports():
 
 class ImageSensingThread(QThread):
     change_pixmap_one = pyqtSignal(QImage)
-    _, ports, _ = list_ports()
+#     _, ports, _ = list_ports()
+    ports = [0, 2]
 
     def run(self):
         cam_one = cv.VideoCapture(self.ports[0])
