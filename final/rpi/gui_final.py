@@ -84,10 +84,10 @@ class ImageSensingThread(QThread):
                 cv.resize(vial, (50, 120), interpolation=cv.INTER_AREA) for vial in vials]
 
             h, w, ch = v1.shape
-            img = cv.cvtColor(vials[0], cv.COLOR_BGR2RGB)
+            img = cv.cvtColor(v1, cv.COLOR_BGR2RGB)
             bytesPerLine = ch*w
             convertToQtFormat = QImage(
-                v1.data , w, h, bytesPerLine, QImage.Format_RGB888)
+                img.data , w, h, bytesPerLine, QImage.Format_RGB888)
             p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
             self.change_pixmap_one.emit(p)
             print(type(self.change_pixmap_one))
