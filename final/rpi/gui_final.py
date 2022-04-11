@@ -130,6 +130,7 @@ class Ui_MainWindow(object):
         self.vial_cam_1.setObjectName("vial_cam_1")
         th = ImageSensingThread()
         th.change_pixmap_one.connect(self.setImage)
+        th.start()
 
         self.vial_cam_2 = QtWidgets.QGraphicsView(self.centralwidget)
         self.vial_cam_2.setGeometry(QtCore.QRect(70, 10, 50, 120))
