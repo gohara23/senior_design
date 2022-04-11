@@ -49,7 +49,7 @@ if __name__ == "__main__":
         if not ret_one:
             print("Cam one error")
             break 
-        cv.imshow("CAM_ONE", frame_one)
+        # cv.imshow("CAM_ONE", frame_one)
         cam_one.release()
 
         cam_two = cv.VideoCapture(working[1])
@@ -57,10 +57,14 @@ if __name__ == "__main__":
         if not ret_two:
             print("cam two error")
             break
-        cv.imshow("CAM_TWO", frame_two)
+        # cv.imshow("CAM_TWO", frame_two)
 
         cam_two.release()
         
+        v1 = frame_one[50:140, 140:330]
+
+        cv.imshow("VIAL ONE", v1)
+
 
         if cv.waitKey(1) == ord('q'):
             break
