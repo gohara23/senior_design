@@ -53,47 +53,48 @@ class ImageSensingThread(QThread):
     ports = [0, 2]
 
     def run(self):
-        cam_one = cv.VideoCapture(self.ports[0])
-        ret_one, frame_one = cam_one.read()
+        while True:
+            cam_one = cv.VideoCapture(self.ports[0])
+            ret_one, frame_one = cam_one.read()
 
-        if not ret_one:
-            print("Cam one error")
+            if not ret_one:
+                print("Cam one error")
 
-        cam_one.release()
+            cam_one.release()
 
-        cam_two = cv.VideoCapture(self.ports[1])
-        ret_two, frame_two = cam_two.read()
+            cam_two = cv.VideoCapture(self.ports[1])
+            ret_two, frame_two = cam_two.read()
 
-        if not ret_two:
-            print("Cam two error")
+            if not ret_two:
+                print("Cam two error")
 
-        cam_two.release()
+            cam_two.release()
 
-        v1 = frame_one[140:330, 50:140]
-        v2 = frame_one[75:340, 290:395]
-        v3 = frame_two[80:315, 30:110]
-        v4 = frame_two[65:320, 250:360]
-        v5 = frame_two[75:315, 500:605]
+            v1 = frame_one[140:330, 50:140]
+            v2 = frame_one[75:340, 290:395]
+            v3 = frame_two[80:315, 30:110]
+            v4 = frame_two[65:320, 250:360]
+            v5 = frame_two[75:315, 500:605]
 
-        vials = [v1, v2, v3, v4, v5]
+            vials = [v1, v2, v3, v4, v5]
 
-        ix = 1
+            ix = 1
 
-        resized_vials = [
-            cv.resize(vial, (50, 120), interpolation=cv.INTER_AREA) for vial in vials]
+            resized_vials = [
+                cv.resize(vial, (50, 120), interpolation=cv.INTER_AREA) for vial in vials]
 
-        h, w, ch = resized_vials[0].shape
-        bytesPerLine = ch*w
-        convertToQtFormat = QImage(
-            vials[0].data, w, h, bytesPerLine, QImage.Format_RGB888)
-        # p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
-        self.change_pixmap_one.emit(convertToQtFormat)
+            h, w, ch = resized_vials[0].shape
+            bytesPerLine = ch*w
+            convertToQtFormat = QImage(
+                vials[0].data, w, h, bytesPerLine, QImage.Format_RGB888)
+            # p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
+            self.change_pixmap_one.emit(convertToQtFormat)
 
-        # return resized_vials
+            # return resized_vials
 
 
 class Ui_MainWindow(object):
-    @pyqtSlot(QImage)
+    #     @pyqtSlot(QImage)
     def setImage(self, image):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(image)
