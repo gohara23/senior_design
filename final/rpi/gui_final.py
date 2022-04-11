@@ -92,12 +92,12 @@ class ImageSensingThread(QThread):
             self.change_pixmap_one.emit(p)
 
             h, w, ch = v2.shape
-            img = cv.cvtColor(v1, cv.COLOR_BGR2RGB)
+            img = cv.cvtColor(v2, cv.COLOR_BGR2RGB)
             bytesPerLine = ch*w
             convertToQtFormat = QImage(
                 img.data , w, h, bytesPerLine, QImage.Format_RGB888)
             p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
-            self.change_pixmap_one.emit(p)
+            self.change_pixmap_two.emit(p)
 
 
             # return resized_vials
