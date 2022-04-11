@@ -66,7 +66,8 @@ if __name__ == "__main__":
         print("Cannot open camera")
         exit()
 
-    cap.release()
+    cam_one.release()
+    cam_two.release()
     cv.destroyAllWindows()
 
 
