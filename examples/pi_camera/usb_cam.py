@@ -38,25 +38,28 @@ if __name__ == "__main__":
     print(working)
     print(not_working)
 
-    caps = [cv.VideoCapture(port) for port in working]
+    # caps = [cv.VideoCapture(port) for port in working]
 
-    cam_one = caps[0]
-    cam_two = caps[1]
+    # cam_one = caps[0]
+    # cam_two = caps[1]
 
     while True:
+        cam_one = cv.VideoCapture(working[0])
         ret_one, frame_one = cam_one.read()
         if not ret_one:
             print("Cam one error")
             break 
         cv.imshow("CAM_ONE", frame_one)
+        cam_one.release()
 
-        sleep(1)
-
+        cam_two = cv.VideoCapture(working[1])
         ret_two, frame_two = cam_two.read()
         if not ret_two:
             print("cam two error")
             break
         cv.imshow("CAM_TWO", frame_two)
+
+        cam_two.release()
         
 
         if cv.waitKey(1) == ord('q'):
