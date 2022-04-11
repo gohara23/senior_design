@@ -39,8 +39,8 @@ if __name__ == "__main__":
 
     caps = [cv.VideoCapture(port) for port in working]
 
-    cam_one = caps[0]
-    cam_two = caps[1]
+    cam_one = caps[1]
+    cam_two = caps[0]
 
     while True:
         ret_one, frame_one = cam_one.read()
