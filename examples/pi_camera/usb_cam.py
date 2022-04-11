@@ -70,7 +70,7 @@ if __name__ == "__main__":
         vials = [v1, v2, v3, v4, v5]
         ix = 1
         for vial in vials:
-            cv.imshow(f"VIAL {ix}")
+            cv.imshow(f"VIAL {ix}", vial)
             ix += 1
 
 
