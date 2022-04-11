@@ -89,6 +89,7 @@ class ImageSensingThread(QThread):
                 vials[0].data, w, h, bytesPerLine, QImage.Format_RGB888)
             # p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
             self.change_pixmap_one.emit(convertToQtFormat)
+            print(type(self.change_pixmap_one))
 
             # return resized_vials
 
