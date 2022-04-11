@@ -50,7 +50,7 @@ if __name__ == "__main__":
             break 
         cv.imshow("CAM_ONE", frame_one)
 
-        sleep(0.1)
+        sleep(1)
 
         ret_two, frame_two = cam_two.read()
         if not ret_two:
