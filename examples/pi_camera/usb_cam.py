@@ -10,7 +10,7 @@ def list_ports():
     while is_working:
         camera = cv.VideoCapture(dev_port)
         if not camera.isOpened():
-            is_working = False
+            # is_working = False
             print("Port %s is not working." % dev_port)
         else:
             is_reading, img = camera.read()
@@ -25,6 +25,8 @@ def list_ports():
                     dev_port, h, w))
                 available_ports.append(dev_port)
         dev_port += 1
+        if dev_port > 25:
+            break
     return available_ports, working_ports
 
 
