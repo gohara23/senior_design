@@ -10,7 +10,7 @@ def list_ports():
     dev_port = 0
     working_ports = []
     available_ports = []
-    while len(non_working_ports) < 30: # if there are more than 5 non working ports stop the testing. 
+    while len(non_working_ports) < 5: # if there are more than 5 non working ports stop the testing. 
         camera = cv.VideoCapture(dev_port)
         if not camera.isOpened():
             non_working_ports.append(dev_port)
@@ -44,27 +44,27 @@ if __name__ == "__main__":
 
     while True:
         ret_one, frame_one = cam_one.read()
-        ret_two, frame_two = cam_two.read()
+        # ret_two, frame_two = cam_two.read()
 
         if not ret_one:
             print("Cam one error")
             break 
-        if not ret_two:
-            print("cam two error")
-            break
+        # if not ret_two:
+        #     print("cam two error")
+        #     break
         
         cv.imshow("CAM_ONE", frame_one)
-        cv.imshow("CAM_TWO", frame_two)
+        # cv.imshow("CAM_TWO", frame_two)
 
         if cv.waitKey(1) == ord('q'):
             break
 
-    cap = cv.VideoCapture(2)
-    cap2 = cv.VideoCapture(0)
+    # cap = cv.VideoCapture(2)
+    # cap2 = cv.VideoCapture(0)
 
-    if not cap.isOpened():
-        print("Cannot open camera")
-        exit()
+    # if not cap.isOpened():
+    #     print("Cannot open camera")
+    #     exit()
 
     cam_one.release()
     cam_two.release()
