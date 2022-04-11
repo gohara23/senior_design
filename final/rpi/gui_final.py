@@ -49,6 +49,11 @@ def list_ports():
 
 class ImageSensingThread(QThread):
     change_pixmap_one = pyqtSignal(QImage)
+    change_pixmap_two = pyqtSignal(QImage)
+    change_pixmap_three = pyqtSignal(QImage)
+    change_pixmap_four = pyqtSignal(QImage)
+    change_pixmap_five = pyqtSignal(QImage)
+    
 #     _, ports, _ = list_ports()
     ports = [0, 2]
 
@@ -78,11 +83,6 @@ class ImageSensingThread(QThread):
 
             vials = [v1, v2, v3, v4, v5]
 
-            ix = 1
-
-            resized_vials = [
-                cv.resize(vial, (50, 120), interpolation=cv.INTER_AREA) for vial in vials]
-
             h, w, ch = v1.shape
             img = cv.cvtColor(v1, cv.COLOR_BGR2RGB)
             bytesPerLine = ch*w
@@ -90,19 +90,30 @@ class ImageSensingThread(QThread):
                 img.data , w, h, bytesPerLine, QImage.Format_RGB888)
             p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
             self.change_pixmap_one.emit(p)
-            print(type(self.change_pixmap_one))
+
+            h, w, ch = v2.shape
+            img = cv.cvtColor(v1, cv.COLOR_BGR2RGB)
+            bytesPerLine = ch*w
+            convertToQtFormat = QImage(
+                img.data , w, h, bytesPerLine, QImage.Format_RGB888)
+            p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
+            self.change_pixmap_one.emit(p)
+
 
             # return resized_vials
 
 
 class Ui_MainWindow(object):
     #     @pyqtSlot(QImage)
-    def setImage(self, image):
+    def setImage_one(self, image):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(QPixmap.fromImage(image))
-        print(type(image))
         self.vial_cam_1.setScene(scene)
-        # self.vial_cam_1.show()
+
+    def setImage_two(self, image):
+        scene = QtWidgets.QGraphicsScene()
+        scene.addPixmap(QPixmap.fromImage(image))
+        self.vial_cam_2.setScene(scene)
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -133,7 +144,7 @@ class Ui_MainWindow(object):
         self.vial_cam_1.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         
         th = ImageSensingThread()
-        th.change_pixmap_one.connect(self.setImage)
+        th.change_pixmap_one.connect(self.setImage_one)
         th.start()
 
         self.vial_cam_2 = QtWidgets.QGraphicsView(self.centralwidget)
@@ -148,6 +159,12 @@ class Ui_MainWindow(object):
         self.vial_cam_2.setMinimumSize(QtCore.QSize(50, 120))
         self.vial_cam_2.setMaximumSize(QtCore.QSize(50, 120))
         self.vial_cam_2.setObjectName("vial_cam_2")
+        self.vial_cam_2.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.vial_cam_2.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        
+        th.change_pixmap_two.connect(self.setImage_two)
+
+
         self.vial_cam_3 = QtWidgets.QGraphicsView(self.centralwidget)
         self.vial_cam_3.setGeometry(QtCore.QRect(130, 10, 50, 120))
         sizePolicy = QtWidgets.QSizePolicy(
