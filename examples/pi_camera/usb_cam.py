@@ -25,17 +25,39 @@ def list_ports():
                     dev_port, h, w))
                 available_ports.append(dev_port)
         dev_port += 1
-        if dev_port > 25:
+        if dev_port > 5:
             break
     return available_ports, working_ports
 
 
 if __name__ == "__main__":
 
-    # ports, working = list_ports()
+    ports, working = list_ports()
 
-    # print(ports)
-    # print(working)
+    print(ports)
+    print(working)
+
+    caps = [cv.VideoCapture(port) for port in working]
+
+    cam_one = caps[0]
+    cam_two = caps[1]
+
+    while True:
+        ret_one, frame_one = cam_one.read()
+        ret_two, frame_two = cam_two.read()
+
+        if not ret_one:
+            print("Cam one error")
+            break 
+        if not ret_two:
+            print("cam two error")
+            break
+        
+        cv.imshow("CAM_ONE", frame_one)
+        cv.imshow("CAM_TWO", frame_two)
+
+        if cv.waitKey(1) == ord('q'):
+            break
 
     cap = cv.VideoCapture(2)
     cap2 = cv.VideoCapture(0)
@@ -43,27 +65,33 @@ if __name__ == "__main__":
     if not cap.isOpened():
         print("Cannot open camera")
         exit()
-while True:
-    # Capture frame-by-frame
-    ret, frame = cap.read()
-    ret2, frame2 = cap2.read()
 
-    # if frame is read correctly ret is True
-    if not ret:
-        print("Cam 1 err")
-        break
+    cap.release()
+    cv.destroyAllWindows()
 
-    if not ret2:
-        print("Cam 2 err")
-        break
-    # Our operations on the frame come here
-    # gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-    # Display the resulting frame
-    cv.imshow('frame', frame)
-    cv.imshow('frame', frame2)
 
-    if cv.waitKey(1) == ord('q'):
-        break
-# When everything done, release the capture
-cap.release()
-cv.destroyAllWindows()
+
+# while True:
+#     # Capture frame-by-frame
+#     ret, frame = cap.read()
+#     ret2, frame2 = cap2.read()
+
+#     # if frame is read correctly ret is True
+#     if not ret:
+#         print("Cam 1 err")
+#         break
+
+#     if not ret2:
+#         print("Cam 2 err")
+#         break
+#     # Our operations on the frame come here
+#     # gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+#     # Display the resulting frame
+#     cv.imshow('frame', frame)
+#     cv.imshow('frame', frame2)
+
+#     if cv.waitKey(1) == ord('q'):
+#         break
+# # When everything done, release the capture
+# cap.release()
+# cv.destroyAllWindows()
