@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
         cam_two.release()
         
-        v1 = frame_one[50:140, 140:330]
+        v1 = frame_one[140:330, 50:140]
 
         cv.imshow("VIAL ONE", v1)
 
