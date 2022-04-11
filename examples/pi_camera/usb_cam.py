@@ -62,8 +62,16 @@ if __name__ == "__main__":
         cam_two.release()
         
         v1 = frame_one[140:330, 50:140]
+        v2 = frame_one[75:340, 290:395]
+        v3 = frame_two[80:315, 30:110]
+        v4 = frame_two[65:320, 250:360]
+        v5 = frame_two[75:315, 500:605]
 
-        cv.imshow("VIAL ONE", v1)
+        vials = [v1, v2, v3, v4, v5]
+        ix = 1
+        for vial in vials:
+            cv.imshow(f"VIAL {ix}")
+            ix += 1
 
 
         if cv.waitKey(1) == ord('q'):
