@@ -115,6 +115,14 @@ class ImageSensingThread(QThread):
             p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
             self.change_pixmap_four.emit(p)
 
+            h, w, ch = v5.shape
+            img = cv.cvtColor(v5, cv.COLOR_BGR2RGB)
+            bytesPerLine = ch*w
+            convertToQtFormat = QImage(
+                img.data , w, h, bytesPerLine, QImage.Format_RGB888)
+            p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
+            self.change_pixmap_five.emit(p)
+
 
 
 
@@ -139,6 +147,11 @@ class Ui_MainWindow(object):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(QPixmap.fromImage(image))
         self.vial_cam_4.setScene(scene)
+
+    def setImage_five(self, image):
+        scene = QtWidgets.QGraphicsScene()
+        scene.addPixmap(QPixmap.fromImage(image))
+        self.vial_cam_5.setScene(scene)
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -241,6 +254,11 @@ class Ui_MainWindow(object):
         self.vial_cam_5.setMinimumSize(QtCore.QSize(50, 120))
         self.vial_cam_5.setMaximumSize(QtCore.QSize(50, 120))
         self.vial_cam_5.setObjectName("vial_cam_5")
+
+        self.vial_cam_5.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.vial_cam_5.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        th.change_pixmap_three.connect(self.setImage_five)
+
         self.label_1 = QtWidgets.QLabel(self.centralwidget)
         self.label_1.setGeometry(QtCore.QRect(30, 130, 21, 20))
         self.label_1.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";")
