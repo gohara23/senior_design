@@ -107,8 +107,15 @@ class ImageSensingThread(QThread):
             p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
             self.change_pixmap_three.emit(p)
 
+            h, w, ch = v4.shape
+            img = cv.cvtColor(v4, cv.COLOR_BGR2RGB)
+            bytesPerLine = ch*w
+            convertToQtFormat = QImage(
+                img.data , w, h, bytesPerLine, QImage.Format_RGB888)
+            p = convertToQtFormat.scaled(50, 120, Qt.KeepAspectRatio)
+            self.change_pixmap_four.emit(p)
 
-            # return resized_vials
+
 
 
 class Ui_MainWindow(object):
@@ -127,6 +134,11 @@ class Ui_MainWindow(object):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(QPixmap.fromImage(image))
         self.vial_cam_3.setScene(scene)
+
+    def setImage_four(self, image):
+        scene = QtWidgets.QGraphicsScene()
+        scene.addPixmap(QPixmap.fromImage(image))
+        self.vial_cam_4.setScene(scene)
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -209,6 +221,14 @@ class Ui_MainWindow(object):
         self.vial_cam_4.setMinimumSize(QtCore.QSize(50, 120))
         self.vial_cam_4.setMaximumSize(QtCore.QSize(50, 120))
         self.vial_cam_4.setObjectName("vial_cam_4")
+
+
+        self.vial_cam_4.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.vial_cam_4.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        
+        th.change_pixmap_three.connect(self.setImage_four)
+
+
         self.vial_cam_5 = QtWidgets.QGraphicsView(self.centralwidget)
         self.vial_cam_5.setGeometry(QtCore.QRect(250, 10, 50, 120))
         sizePolicy = QtWidgets.QSizePolicy(
