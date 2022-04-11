@@ -44,17 +44,17 @@ if __name__ == "__main__":
 
     while True:
         ret_one, frame_one = cam_one.read()
-        ret_two, frame_two = cam_two.read()
+        # ret_two, frame_two = cam_two.read()
 
         if not ret_one:
             print("Cam one error")
             break 
-        if not ret_two:
-            print("cam two error")
-            break
+        # if not ret_two:
+        #     print("cam two error")
+        #     break
         
         cv.imshow("CAM_ONE", frame_one)
-        cv.imshow("CAM_TWO", frame_two)
+        # cv.imshow("CAM_TWO", frame_two)
 
         if cv.waitKey(1) == ord('q'):
             break
