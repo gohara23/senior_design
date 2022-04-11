@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
     #     @pyqtSlot(QImage)
     def setImage(self, image):
         scene = QtWidgets.QGraphicsScene()
-        scene.addPixmap(image)
+        scene.addPixmap(QPixmap.fromImage(image))
         print(type(image))
         self.vial_cam_1.setScene(scene)
         # self.vial_cam_1.show()
@@ -130,7 +130,7 @@ class Ui_MainWindow(object):
         self.vial_cam_1.setMaximumSize(QtCore.QSize(50, 120))
         self.vial_cam_1.setObjectName("vial_cam_1")
         th = ImageSensingThread()
-        th.change_pixmap_one.connect(self.setImage(th.change_pixmap_one))
+        th.change_pixmap_one.connect(self.setImage)
         th.start()
 
         self.vial_cam_2 = QtWidgets.QGraphicsView(self.centralwidget)
