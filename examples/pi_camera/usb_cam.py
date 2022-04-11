@@ -76,6 +76,7 @@ if __name__ == "__main__":
         ix = 1
         for vial in vials:
             cv.imshow(f"VIAL {ix}", vial)
+            ix += 1
 
         if cv.waitKey(1) == ord('q'):
             break
