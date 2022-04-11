@@ -75,11 +75,11 @@ class ImageSensingThread(QThread):
 
             cam_two.release()
 
-            v1 = frame_one[140:330, 50:140]
-            v2 = frame_one[75:340, 290:395]
-            v3 = frame_two[80:315, 30:110]
-            v4 = frame_two[65:320, 250:360]
-            v5 = frame_two[75:315, 500:605]
+            v1 = cv.resize(frame_one[140:330, 50:140], interpolation=cv.INTER_AREA)
+            v2 = cv.resize(frame_one[75:340, 290:395], interpolation=cv.INTER_AREA)
+            v3 = cv.resize(frame_two[80:315, 30:110], interpolation=cv.INTER_AREA)
+            v4 = cv.resize(frame_two[65:320, 250:360], interpolation=cv.INTER_AREA)
+            v5 = cv.resize(frame_two[75:315, 500:605], interpolation=cv.INTER_AREA)
 
             vials = [v1, v2, v3, v4, v5]
 
