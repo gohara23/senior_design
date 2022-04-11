@@ -11,7 +11,7 @@ def list_ports():
     working_ports = []
     available_ports = []
     while len(non_working_ports) < 6: # if there are more than 5 non working ports stop the testing. 
-        camera = cv2.VideoCapture(dev_port)
+        camera = cv.VideoCapture(dev_port)
         if not camera.isOpened():
             non_working_ports.append(dev_port)
             print("Port %s is not working." %dev_port)
