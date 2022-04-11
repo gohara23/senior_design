@@ -130,6 +130,8 @@ class Ui_MainWindow(object):
         self.vial_cam_1.setMaximumSize(QtCore.QSize(50, 120))
         self.vial_cam_1.setObjectName("vial_cam_1")
         self.vial_cam_1.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.vial_cam_1.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        
         th = ImageSensingThread()
         th.change_pixmap_one.connect(self.setImage)
         th.start()
